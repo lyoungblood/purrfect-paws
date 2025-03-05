@@ -1,24 +1,17 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getBreedById, catBreeds } from '@/data/catBreeds';
 import { notFound } from 'next/navigation';
 
-interface BreedPageProps {
-  params: {
-    id: string;
-  };
-}
-
-export function generateStaticParams() {
-  return catBreeds.map((breed) => ({
-    id: breed.id,
-  }));
-}
-
-export default async function BreedPage({ params }: BreedPageProps) {
-  // Make sure params is properly awaited
-  const id = params?.id;
-  const breed = id ? getBreedById(id) : null;
+export default function BreedPage({ 
+  params 
+}: { 
+  params: { id: string } 
+}) {
+  const breed = getBreedById(params.id);
   
   if (!breed) {
     notFound();
@@ -34,10 +27,12 @@ export default async function BreedPage({ params }: BreedPageProps) {
       <section className="mb-8">
         <div className="cat-card p-6">
           <div className="relative w-full mb-6 overflow-hidden rounded-lg flex justify-center">
-            <img 
+            <Image 
               src={breed.imageUrl} 
               alt={`${breed.name} cat`}
-              className="max-h-[400px] max-w-full"
+              width={600}
+              height={400}
+              className="max-h-[400px] object-contain"
             />
           </div>
 

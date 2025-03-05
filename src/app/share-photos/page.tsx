@@ -27,7 +27,7 @@ export default function SharePhotos() {
     const placeholderImageUrl = `/images/user-photos/placeholder-${Math.floor(Math.random() * 4) + 1}.jpg`;
     
     // Add the new photo
-    const newPhoto = addUserPhoto(ownerName, catName, description, placeholderImageUrl);
+    addUserPhoto(ownerName, catName, description, placeholderImageUrl);
     
     // Update the state
     setPhotos(getAllUserPhotos());
@@ -79,7 +79,7 @@ export default function SharePhotos() {
             
             <div className="mb-4">
               <label htmlFor="catName" className="block mb-2 font-bold">
-                Cat's Name
+                Cat&apos;s Name
               </label>
               <input
                 type="text"
@@ -87,7 +87,7 @@ export default function SharePhotos() {
                 value={catName}
                 onChange={(e) => setCatName(e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded"
-                placeholder="Enter your cat's name"
+                placeholder="Enter your cat&apos;s name"
               />
             </div>
             
@@ -111,7 +111,7 @@ export default function SharePhotos() {
               </label>
               <div className="border border-dashed border-gray-300 rounded p-8 text-center">
                 <p className="mb-2">In a real app, this would be a file upload component</p>
-                <p className="text-sm text-gray-500">For this demo, we'll use a placeholder image</p>
+                <p className="text-sm text-gray-500">For this demo, we&apos;ll use a placeholder image</p>
               </div>
             </div>
             

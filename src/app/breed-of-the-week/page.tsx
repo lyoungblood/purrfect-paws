@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getBreedOfTheWeek } from '@/data/catBreeds';
 
 export default function BreedOfTheWeek() {
@@ -16,10 +17,12 @@ export default function BreedOfTheWeek() {
       <section className="mb-8">
         <div className="cat-card p-6">
           <div className="relative w-full mb-6 overflow-hidden rounded-lg flex justify-center">
-            <img 
+            <Image 
               src={breed.imageUrl} 
               alt={`${breed.name} cat`}
-              className="max-h-[400px] max-w-full"
+              width={600}
+              height={400}
+              className="max-h-[400px] object-contain"
             />
           </div>
 

@@ -20,7 +20,7 @@ export default function MessageBoard() {
     }
     
     // Add the new message
-    const newMessage = addMessage(author, content);
+    addMessage(author, content);
     
     // Update the state
     setMessages(getAllMessages());

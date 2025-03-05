@@ -32,18 +32,18 @@ export default function About() {
             <h3 className="text-xl font-bold mb-2">Cat Breed Information</h3>
             <p className="mb-2">
               Each week, we feature a different cat breed, providing detailed information about their 
-              characteristics, care needs, and fun facts. Our "Breed of the Week" feature helps cat 
+              characteristics, care needs, and fun facts. Our &quot;Breed of the Week&quot; feature helps cat 
               lovers learn about the wonderful diversity of cat breeds.
             </p>
             <Link href="/breed-of-the-week" className="text-[#d68c45] font-bold hover:underline">
-              Check out this week's featured breed →
+              Check out this week&apos;s featured breed →
             </Link>
           </div>
           
           <div className="mb-6">
             <h3 className="text-xl font-bold mb-2">Photo Gallery</h3>
             <p className="mb-2">
-              Our gallery showcases beautiful cat photos, organized by breed. It's a visual celebration 
+              Our gallery showcases beautiful cat photos, organized by breed. It&apos;s a visual celebration 
               of feline beauty and charm.
             </p>
             <Link href="/gallery" className="text-[#d68c45] font-bold hover:underline">
