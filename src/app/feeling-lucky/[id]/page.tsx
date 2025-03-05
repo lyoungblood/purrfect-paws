@@ -1,7 +1,7 @@
 import React from 'react';
 import { getBreedById, catBreeds } from '@/data/catBreeds';
 import { notFound } from 'next/navigation';
-import BreedPageClient from '@/app/breed-of-the-week/[id]/BreedPageClient';
+import BreedPageClient from '@/app/feeling-lucky/[id]/BreedPageClient';
 
 // This function tells Next.js which routes to pre-render at build time
 export function generateStaticParams() {

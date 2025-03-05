@@ -40,7 +40,7 @@ export default function RootLayout({
                 <div className="flex space-x-8">
                   <Link href="/" className="text-sm font-medium hover:text-[#d68c45] transition-colors">Home</Link>
                   <Link href="/gallery" className="text-sm font-medium hover:text-[#d68c45] transition-colors">Gallery</Link>
-                  <Link href="/breed-of-the-week" className="text-sm font-medium hover:text-[#d68c45] transition-colors">Breed of the Week</Link>
+                  <Link href="/feeling-lucky" className="text-sm font-medium hover:text-[#d68c45] transition-colors">I'm Feeling Lucky</Link>
                   <Link href="/message-board" className="text-sm font-medium hover:text-[#d68c45] transition-colors">Message Board</Link>
                   <Link href="/share-photos" className="text-sm font-medium hover:text-[#d68c45] transition-colors">Share Photos</Link>
                   <Link href="/about" className="text-sm font-medium hover:text-[#d68c45] transition-colors">About</Link>

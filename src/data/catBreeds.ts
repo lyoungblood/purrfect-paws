@@ -91,13 +91,53 @@ export const catBreeds: CatBreed[] = [
   }
 ];
 
+import { getPhotosByCategory } from './galleryPhotos';
+
 export const getBreedOfTheWeek = (): CatBreed => {
   // This function would normally calculate which breed to show based on the current week
   // For demo purposes, we'll just return a random breed
   const randomIndex = Math.floor(Math.random() * catBreeds.length);
-  return catBreeds[randomIndex];
+  const breed = catBreeds[randomIndex];
+  
+  // Get all gallery photos for this breed's category
+  const breedPhotos = getPhotosByCategory(breed.name);
+  
+  // If there are gallery photos for this breed, randomly select one
+  if (breedPhotos.length > 0) {
+    const randomPhotoIndex = Math.floor(Math.random() * breedPhotos.length);
+    const randomPhoto = breedPhotos[randomPhotoIndex];
+    
+    // Return a new breed object with the updated imageUrl
+    return {
+      ...breed,
+      imageUrl: randomPhoto.imageUrl
+    };
+  }
+  
+  // If no gallery photos found, return the breed with its original image
+  return breed;
 };
 
 export const getBreedById = (id: string): CatBreed | undefined => {
-  return catBreeds.find(breed => breed.id === id);
+  const breed = catBreeds.find(breed => breed.id === id);
+  
+  if (!breed) return undefined;
+  
+  // Get all gallery photos for this breed's category
+  const breedPhotos = getPhotosByCategory(breed.name);
+  
+  // If there are gallery photos for this breed, randomly select one
+  if (breedPhotos.length > 0) {
+    const randomPhotoIndex = Math.floor(Math.random() * breedPhotos.length);
+    const randomPhoto = breedPhotos[randomPhotoIndex];
+    
+    // Return a new breed object with the updated imageUrl
+    return {
+      ...breed,
+      imageUrl: randomPhoto.imageUrl
+    };
+  }
+  
+  // If no gallery photos found, return the breed with its original image
+  return breed;
 };

@@ -51,7 +51,7 @@ const BreedCard: React.FC<BreedCardProps> = ({ breed, featured = false }) => {
       )}
       
       <Link 
-        href={`/breed-of-the-week/${breed.id}`}
+        href={`/feeling-lucky/${breed.id}`}
         className="cat-button inline-block"
       >
         Learn More

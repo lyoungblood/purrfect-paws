@@ -31,14 +31,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Cat Breed of the Week Section */}
+      {/* I'm Feeling Lucky Section */}
       <section>
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            Cat Breed of the Week
+            I'm Feeling Lucky
           </h2>
           <p className="text-lg text-gray-600">
-            Learn about a different cat breed each week
+            Discover a random cat breed each time
           </p>
         </div>
 
