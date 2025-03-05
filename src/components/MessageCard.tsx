@@ -20,18 +20,18 @@ const MessageCard: React.FC<MessageCardProps> = ({ message, onLike }) => {
   };
 
   return (
-    <div className="cat-card p-4 mb-4">
-      <div className="flex justify-between items-start mb-2">
-        <h3 className="font-bold text-lg">{message.author}</h3>
-        <span className="text-xs text-gray-600">{formatDate(message.timestamp)}</span>
+    <div className="cat-card p-6 mb-6">
+      <div className="flex justify-between items-start mb-4">
+        <h3 className="font-bold text-lg tracking-tight">{message.author}</h3>
+        <span className="text-xs text-gray-500 font-medium">{formatDate(message.timestamp)}</span>
       </div>
       
-      <p className="mb-4">{message.content}</p>
+      <p className="mb-6 text-gray-600 leading-relaxed">{message.content}</p>
       
       <div className="flex items-center">
         <button 
           onClick={() => onLike(message.id)}
-          className="flex items-center gap-1 text-sm hover:text-[#d68c45] transition-colors"
+          className="flex items-center gap-2 text-sm font-medium hover:text-[#d68c45] transition-colors py-1 px-2 rounded-full hover:bg-gray-100"
         >
           <span>❤️</span>
           <span>{message.likes}</span>
