@@ -19,86 +19,7 @@ const PhotoCard: React.FC<PhotoCardProps> = ({ photo }) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const parallaxTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Initialize all photos and find current photo index
-  useEffect(() => {
-    const photos = getAllPhotos();
-    setAllPhotos(photos);
-    const index = photos.findIndex(p => p.id === photo.id);
-    setCurrentPhotoIndex(index >= 0 ? index : 0);
-    
-    // Preload adjacent images
-    if (index > 0) {
-      const prevImg = new window.Image();
-      prevImg.src = photos[index - 1].imageUrl;
-    }
-    
-    if (index < photos.length - 1) {
-      const nextImg = new window.Image();
-      nextImg.src = photos[index + 1].imageUrl;
-    }
-  }, [photo.id]);
-
-  // Handle keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (!isFullscreen) return;
-      
-      switch (event.key) {
-        case 'Escape':
-          closeFullscreen();
-          break;
-        case 'ArrowLeft':
-          navigateToPrevious();
-          break;
-        case 'ArrowRight':
-          navigateToNext();
-          break;
-      }
-    };
-
-    if (isFullscreen) {
-      window.addEventListener('keydown', handleKeyDown);
-      // Prevent scrolling when fullscreen is active
-      document.body.style.overflow = 'hidden';
-    }
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      // Restore scrolling when component unmounts or fullscreen is closed
-      document.body.style.overflow = 'auto';
-    };
-  }, [isFullscreen, currentPhotoIndex, allPhotos.length]);
-
-  // Start parallax effect when fullscreen is active
-  useEffect(() => {
-    if (isFullscreen && isAnimating && !isClosing) {
-      startParallaxAnimation();
-    } else {
-      // Clear any existing parallax animation
-      if (parallaxTimerRef.current) {
-        clearTimeout(parallaxTimerRef.current);
-        parallaxTimerRef.current = null;
-      }
-      setParallaxOffset({ x: 0, y: 0 });
-      setParallaxScale(1);
-    }
-
-    return () => {
-      if (parallaxTimerRef.current) {
-        clearTimeout(parallaxTimerRef.current);
-      }
-    };
-  }, [isFullscreen, isAnimating, isClosing]);
-
-  // Preload the current fullscreen image
-  useEffect(() => {
-    if (allPhotos.length > 0) {
-      const currentPhoto = allPhotos[currentPhotoIndex];
-      const preloadImage = new window.Image();
-      preloadImage.src = currentPhoto.imageUrl;
-    }
-  }, [currentPhotoIndex, allPhotos]);
-
+  // Define callback functions first
   const startParallaxAnimation = useCallback(() => {
     // We don't reset the scale here anymore, that's handled in the navigation functions
     // to prevent visible zoom-out effect
@@ -126,23 +47,23 @@ const PhotoCard: React.FC<PhotoCardProps> = ({ photo }) => {
     animate();
   }, []);
 
-  const openFullscreen = () => {
+  const openFullscreen = useCallback(() => {
     setIsClosing(false);
     setIsFullscreen(true);
     // Set animating state after a small delay to ensure the animation triggers
     setTimeout(() => {
       setIsAnimating(true);
     }, 10);
-  };
+  }, []);
 
-  const closeFullscreen = () => {
+  const closeFullscreen = useCallback(() => {
     setIsClosing(true);
     setIsAnimating(false);
     setTimeout(() => {
       setIsFullscreen(false);
       setIsClosing(false);
     }, 500); // Reduced from 1000ms to 500ms for faster closing
-  };
+  }, []);
 
   const navigateToNext = useCallback(() => {
     if (currentPhotoIndex < allPhotos.length - 1) {
@@ -228,6 +149,86 @@ const PhotoCard: React.FC<PhotoCardProps> = ({ photo }) => {
     }
   }, [currentPhotoIndex, allPhotos, startParallaxAnimation]);
 
+  // Initialize all photos and find current photo index
+  useEffect(() => {
+    const photos = getAllPhotos();
+    setAllPhotos(photos);
+    const index = photos.findIndex(p => p.id === photo.id);
+    setCurrentPhotoIndex(index >= 0 ? index : 0);
+    
+    // Preload adjacent images
+    if (index > 0) {
+      const prevImg = new window.Image();
+      prevImg.src = photos[index - 1].imageUrl;
+    }
+    
+    if (index < photos.length - 1) {
+      const nextImg = new window.Image();
+      nextImg.src = photos[index + 1].imageUrl;
+    }
+  }, [photo.id]);
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!isFullscreen) return;
+      
+      switch (event.key) {
+        case 'Escape':
+          closeFullscreen();
+          break;
+        case 'ArrowLeft':
+          navigateToPrevious();
+          break;
+        case 'ArrowRight':
+          navigateToNext();
+          break;
+      }
+    };
+
+    if (isFullscreen) {
+      window.addEventListener('keydown', handleKeyDown);
+      // Prevent scrolling when fullscreen is active
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      // Restore scrolling when component unmounts or fullscreen is closed
+      document.body.style.overflow = 'auto';
+    };
+  }, [isFullscreen, currentPhotoIndex, allPhotos.length, navigateToNext, navigateToPrevious, closeFullscreen]);
+
+  // Start parallax effect when fullscreen is active
+  useEffect(() => {
+    if (isFullscreen && isAnimating && !isClosing) {
+      startParallaxAnimation();
+    } else {
+      // Clear any existing parallax animation
+      if (parallaxTimerRef.current) {
+        clearTimeout(parallaxTimerRef.current);
+        parallaxTimerRef.current = null;
+      }
+      setParallaxOffset({ x: 0, y: 0 });
+      setParallaxScale(1);
+    }
+
+    return () => {
+      if (parallaxTimerRef.current) {
+        clearTimeout(parallaxTimerRef.current);
+      }
+    };
+  }, [isFullscreen, isAnimating, isClosing, startParallaxAnimation]);
+
+  // Preload the current fullscreen image
+  useEffect(() => {
+    if (allPhotos.length > 0) {
+      const currentPhoto = allPhotos[currentPhotoIndex];
+      const preloadImage = new window.Image();
+      preloadImage.src = currentPhoto.imageUrl;
+    }
+  }, [currentPhotoIndex, allPhotos]);
+
   const currentPhoto = allPhotos[currentPhotoIndex] || photo;
 
   return (
@@ -250,7 +251,7 @@ const PhotoCard: React.FC<PhotoCardProps> = ({ photo }) => {
         <div className="p-5">
           <h3 className="text-xl font-bold tracking-tight mb-2">{photo.title}</h3>
           <p className="text-sm text-gray-600 mb-3">{photo.description}</p>
-          <span className="inline-block bg-[#d68c45] text-white text-xs px-3 py-1 rounded-full font-medium">
+          <span className="inline-block bg-[#4a90e2] text-white text-xs px-3 py-1 rounded-full font-medium">
             {photo.category}
           </span>
         </div>
@@ -282,7 +283,7 @@ const PhotoCard: React.FC<PhotoCardProps> = ({ photo }) => {
         >
           {/* Close button */}
           <button 
-            className="absolute top-6 right-6 text-white text-4xl font-bold hover:text-[#d68c45] transition-colors z-[60]"
+            className="absolute top-6 right-6 text-white text-4xl font-bold hover:text-[#4a90e2] transition-colors z-[60]"
             onClick={(e) => {
               e.stopPropagation();
               closeFullscreen();
@@ -294,7 +295,7 @@ const PhotoCard: React.FC<PhotoCardProps> = ({ photo }) => {
           
           {/* Navigation buttons */}
           <button 
-            className={`absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-5xl font-light hover:text-[#d68c45] transition-colors z-[60] ${currentPhotoIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'opacity-80'}`}
+            className={`absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-5xl font-light hover:text-[#4a90e2] transition-colors z-[60] ${currentPhotoIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'opacity-80'}`}
             onClick={(e) => {
               e.stopPropagation();
               navigateToPrevious();
@@ -306,7 +307,7 @@ const PhotoCard: React.FC<PhotoCardProps> = ({ photo }) => {
           </button>
           
           <button 
-            className={`absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-5xl font-light hover:text-[#d68c45] transition-colors z-[60] ${currentPhotoIndex === allPhotos.length - 1 ? 'opacity-30 cursor-not-allowed' : 'opacity-80'}`}
+            className={`absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-5xl font-light hover:text-[#4a90e2] transition-colors z-[60] ${currentPhotoIndex === allPhotos.length - 1 ? 'opacity-30 cursor-not-allowed' : 'opacity-80'}`}
             onClick={(e) => {
               e.stopPropagation();
               navigateToNext();
@@ -357,7 +358,7 @@ const PhotoCard: React.FC<PhotoCardProps> = ({ photo }) => {
           >
             <h2 className="text-2xl font-bold tracking-tight mb-3">{currentPhoto.title}</h2>
             <p className="text-lg mb-3 text-gray-200">{currentPhoto.description}</p>
-            <span className="inline-block bg-[#d68c45] text-white px-4 py-1 rounded-full font-medium">
+            <span className="inline-block bg-[#4a90e2] text-white px-4 py-1 rounded-full font-medium">
               {currentPhoto.category}
             </span>
           </div>

@@ -38,17 +38,17 @@ export default function RootLayout({
                   </Link>
                 </div>
                 <div className="flex space-x-8">
-                  <Link href="/" className="text-sm font-medium hover:text-[#d68c45] transition-colors">Home</Link>
-                  <Link href="/gallery" className="text-sm font-medium hover:text-[#d68c45] transition-colors">Gallery</Link>
-                  <Link href="/feeling-lucky" className="text-sm font-medium hover:text-[#d68c45] transition-colors">I'm Feeling Lucky</Link>
-                  <Link href="/message-board" className="text-sm font-medium hover:text-[#d68c45] transition-colors">Message Board</Link>
-                  <Link href="/share-photos" className="text-sm font-medium hover:text-[#d68c45] transition-colors">Share Photos</Link>
-                  <Link href="/about" className="text-sm font-medium hover:text-[#d68c45] transition-colors">About</Link>
+                  <Link href="/" className="text-sm font-medium hover:text-[#4a90e2] transition-colors">Home</Link>
+                  <Link href="/gallery" className="text-sm font-medium hover:text-[#4a90e2] transition-colors">Gallery</Link>
+                  <Link href="/feeling-lucky" className="text-sm font-medium hover:text-[#4a90e2] transition-colors">I&apos;m Feeling Lucky</Link>
+                  <Link href="/message-board" className="text-sm font-medium hover:text-[#4a90e2] transition-colors">Message Board</Link>
+                  <Link href="/share-photos" className="text-sm font-medium hover:text-[#4a90e2] transition-colors">Share Photos</Link>
+                  <Link href="/about" className="text-sm font-medium hover:text-[#4a90e2] transition-colors">About</Link>
                 </div>
               </nav>
             </div>
           </header>
-          <main className="flex-grow container mx-auto px-4 md:px-6 py-8">
+          <main className="flex-grow container mx-auto px-4 md:px-6 pt-1 pb-4">
             {children}
           </main>
           <footer className="border-t border-gray-100 py-8 mt-8">
@@ -64,9 +64,9 @@ export default function RootLayout({
                 </div>
                 <div className="flex flex-col md:items-end justify-center">
                   <div className="flex space-x-6">
-                    <a href="https://icatcare.org/" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-[#d68c45] transition-colors">International Cat Care</a>
-                    <a href="https://www.aspca.org/pet-care/cat-care" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-[#d68c45] transition-colors">ASPCA Cat Care</a>
-                    <a href="https://www.tica.org/" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-[#d68c45] transition-colors">The International Cat Association</a>
+                    <a href="https://icatcare.org/" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-[#4a90e2] transition-colors">International Cat Care</a>
+                    <a href="https://www.aspca.org/pet-care/cat-care" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-[#4a90e2] transition-colors">ASPCA Cat Care</a>
+                    <a href="https://www.tica.org/" target="_blank" rel="noopener noreferrer" className="text-sm hover:text-[#4a90e2] transition-colors">The International Cat Association</a>
                   </div>
                   <p className="mt-4 text-sm text-gray-600">© 2025 Purrfect Paws. All rights reserved.</p>
                 </div>

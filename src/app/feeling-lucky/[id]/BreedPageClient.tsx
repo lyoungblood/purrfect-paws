@@ -61,7 +61,7 @@ export default function BreedPageClient({ breed }: BreedPageClientProps) {
 
       <section className="flex justify-between mb-8">
         <Link href="/feeling-lucky" className="cat-button">
-          Back to I'm Feeling Lucky
+          Back to I&apos;m Feeling Lucky
         </Link>
         <Link href="/gallery" className="cat-button">
           View Cat Gallery

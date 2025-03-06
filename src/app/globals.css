@@ -3,7 +3,7 @@
 :root {
   --background: #ffffff; /* Clean white background */
   --foreground: #111111; /* Near black text for better readability */
-  --accent-color: #d68c45; /* Keeping the tabby orange as brand color */
+  --accent-color: #4a90e2; /* Modern blue accent color */
   --accent-color-light: #f8f5f0; /* Light cream for cards */
   --accent-color-dark: #a0a0a0; /* Grey cat */
 }
@@ -91,6 +91,6 @@ a:hover {
 }
 
 .cat-button:hover {
-  background-color: #c07a35;
+  background-color: #3a7bc8;
   transform: translateY(-2px);
 }

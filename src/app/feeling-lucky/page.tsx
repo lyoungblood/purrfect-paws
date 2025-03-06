@@ -9,7 +9,7 @@ export default function FeelingLucky() {
   return (
     <div className="max-w-4xl mx-auto">
       <section className="py-8 text-center">
-        <h1 className="text-4xl font-bold mb-4">I'm Feeling Lucky</h1>
+        <h1 className="text-4xl font-bold mb-4">I&apos;m Feeling Lucky</h1>
         <p className="text-lg mb-2">Featuring</p>
         <h2 className="text-3xl font-bold text-[#d68c45]">{breed.name}</h2>
       </section>
@@ -65,7 +65,7 @@ export default function FeelingLucky() {
       <section className="bg-[#f2e2c4] rounded-lg p-6 text-center">
         <h3 className="text-2xl font-bold mb-4">Try Your Luck Again!</h3>
         <p className="text-lg">
-          Click "I'm Feeling Lucky" in the navigation to discover another amazing cat breed!
+          Click &quot;I&apos;m Feeling Lucky&quot; in the navigation to discover another amazing cat breed!
         </p>
       </section>
     </div>

@@ -10,14 +10,14 @@ export default function Home() {
   const featuredPhotos = getFeaturedPhotos();
 
   return (
-    <div className="space-y-24">
+    <div className="space-y-8">
       {/* Hero Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-0 md:py-1">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
             Welcome to Purrfect Paws
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 mb-10">
+          <p className="text-lg md:text-xl text-gray-600 mb-6">
             A website dedicated to cat lovers everywhere
           </p>
           <div className="flex flex-wrap justify-center gap-4">
@@ -33,9 +33,9 @@ export default function Home() {
 
       {/* I'm Feeling Lucky Section */}
       <section>
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            I'm Feeling Lucky
+        <div className="max-w-3xl mx-auto text-center mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-2">
+            I&apos;m Feeling Lucky
           </h2>
           <p className="text-lg text-gray-600">
             Discover a random cat breed each time
@@ -49,8 +49,8 @@ export default function Home() {
 
       {/* Featured Photos Section */}
       <section>
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+        <div className="max-w-3xl mx-auto text-center mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-2">
             Featured Cat Photos
           </h2>
           <p className="text-lg text-gray-600">
@@ -64,7 +64,7 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-8">
           <Link href="/gallery" className="cat-button">
             View All Photos
           </Link>
